@@ -16,18 +16,18 @@ app:
     - SPRING_PROFILES_ACTIVE=prod
   restart: always
   links:
-    - mongo
+    - mongodb:mongo
   volumes:
     - ./app:/var/log/app
-mongo:
+mongodb:
   image: bitnami/mongodb
   ports:
     - 27018:27017
     - 28019:28017
   environment:
     - MONGODB_USER=failure
-    - MONGODB_PASSWORD=failure
-    - MONGODB_DATABASE=dsn4JKns3
+    - MONGODB_PASSWORD=dsn4JKns3
+    - MONGODB_DATABASE=failure
   volumes:
     - ./db:/opt/bitnami/mongodb/data
  # command: --smallfiles --rest --auth
