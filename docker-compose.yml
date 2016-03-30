@@ -5,6 +5,8 @@ nginx:
     - 443:443
   links:
     - app:app
+  environment:
+    - TZ=Europe/Moscow
   volumes:
     - ./nginx/ssl:/etc/nginx/ssl:ro
     - ./nginx/logs:/var/log/nginx
@@ -15,6 +17,7 @@ app:
   image: "petrpopov/failure-service"
   environment:
     - SPRING_PROFILES_ACTIVE=prod
+    - TZ=Europe/Moscow
   restart: always
   links:
     - mongodb:mongo
@@ -26,6 +29,7 @@ mongodb:
     - 27018:27017
     - 28019:28017
   environment:
+    - TZ=Europe/Moscow
     - MONGODB_USER=failure
     - MONGODB_PASSWORD=dsn4JKns3
     - MONGODB_DATABASE=failure
