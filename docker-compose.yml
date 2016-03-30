@@ -1,0 +1,19 @@
+app:
+  image: "petrpopov/failure-service"
+  environment:
+    - SPRING_PROFILES_ACTIVE=prod
+  restart: always
+  links:
+    - mongo
+mongo:
+  image: bitnami/mongodb
+  ports:
+    - 27017:27017
+    - 28017:28017
+  environment:
+    - MONGODB_USER=failure
+    - MONGODB_PASSWORD=failure
+    - MONGODB_DATABASE=dsn4JKns3
+  volumes:
+    - ./db:/data/db
+  command: --smallfiles --rest --auth
